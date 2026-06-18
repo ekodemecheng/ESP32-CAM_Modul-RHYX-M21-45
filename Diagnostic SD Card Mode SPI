@@ -1,0 +1,22 @@
+#include "FS.h"
+#include "SD_MMC.h"
+
+void setup()
+{
+  Serial.begin(115200);
+
+  Serial.println("Init SD...");
+
+  if (!SD_MMC.begin("/sdcard", true))
+  {
+    Serial.println("SD FAIL");
+    return;
+  }
+
+  Serial.println("SD OK");
+
+  Serial.printf("Size : %llu MB\n",
+                SD_MMC.cardSize() / 1024 / 1024);
+}
+
+void loop(){}
